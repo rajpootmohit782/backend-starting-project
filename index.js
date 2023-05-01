@@ -7,6 +7,7 @@ const shoproute = require("./routes/shop");
 const contactme = require("./routes/contactus");
 const sucesspage = require("./routes/sucess");
 app.use(bodyParser.urlencoded({ extended: false }));
+const errors = require("./controllers/404error");
 
 app.use(adminRoutes);
 
@@ -15,7 +16,5 @@ app.use(shoproute);
 app.use(contactme);
 
 app.use(sucesspage);
-app.use((req, res, next) => {
-  res.status(404).sendFile(path.join(__dirname, "views", "404error.html"));
-});
+app.use(errors.errorControler);
 app.listen(4000);
